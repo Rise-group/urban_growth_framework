@@ -1,0 +1,31 @@
+{
+	"type" : "classification",
+	"comment" : "In the 'name' section use the same name as scikit-learn",
+	"comment" : "Use the same parameters name as scikit-learn",
+	"models" : [
+		{
+			"comment" : "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html",
+			"name" : "RandomForestClassifier",
+			"parameters" : [
+				{
+					"max_depth" : [5,6],
+					"min_samples_split" : [4,5],
+					"n_estimators" :[100],
+					"class_weight" : ["balanced"]
+				}
+			]
+		},
+		{
+			"comment" : "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html",
+			"name" : "ExtraTreesClassifier",
+			"parameters" : [
+				{
+					"max_depth" : [7,8],
+					"min_samples_split" : [2,4],
+					"n_estimators" :[100],
+					"class_weight" : ["balanced"]
+				}
+			]
+		}
+	]
+}
