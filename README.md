@@ -21,7 +21,7 @@ Jairo A. Gómez<sup>1</sup>, Jorge E. Patiño<sup>1</sup>, Juan C. Duque<sup>1
 
 maintainer = "RiSE Group" (http://www.rise-group.org/). Universidad EAFIT
 
-Corresponding author = jagomeze@eafit.edu.co; Tel.: +57-4-2619500 EXT 9894.
+Corresponding author = jagomeze at eafit.edu.co; Tel.: +57-4-2619500 EXT 9894.
 
 ### Abstract 
 
