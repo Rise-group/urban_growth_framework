@@ -1,0 +1,5 @@
+## Data
+In these folders you can find the input variables used in the paper for both cities: Valledupar and Rionegro. In each folder you will find 3 more folders : input, intermediate, and output. The input folder contains the data before the preprocessing, the intermediate folder contains the data after preprocessing, and finally the output folder contains the results of the simulation process for the three main variables : population distribution, binary urban footprint and rgb maps. Each of these folders contains a *.tif* file which name corresponds to the year it represents. In the input and intermediate folder you will find two *.xlsx* files with the information about the official population statistic and the urban population ratio for each administrative division.
+
+## References
+If you use these data please cite the paper as it is explained in the main page of this repository.
