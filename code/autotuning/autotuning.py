@@ -1228,9 +1228,9 @@ def compute_and_display_the_KDE_from_a_dataframe(pd_x,
     Parameters
     ---------- 
     pd_x : object
-        Pandas dataframe where the rows are the number trials (i.e: observations), and the columns are the number of models
+        Pandas dataframe where the rows are the number trials (i.e: observations), and the columns are the number of models.
     filename_for_input_pickle_file : string 
-        complete path and filename with extension to the pickle file that was used to store the autotuning results.
+        Complete path and filename with extension to the pickle file that was used to store the autotuning results.
         This object includes the variable outputs_after_all_iterations creating by the autotuning. 
     name_of_x : string
         Name of x-axis that corresponds to the metric that you are evaluating. For instance 'R²' or 'MSE' or 'F1'.
@@ -1239,7 +1239,7 @@ def compute_and_display_the_KDE_from_a_dataframe(pd_x,
     kernel : string
         Kernel to use in the r Kernel Density Estimation. The options are: 'gaussian, 'tophat','epanechnikov', 'exponential','linear','cosine'.     
     num_points_to_generate_in_kde_graph : int
-        How many points are going go to be used to generate the KDE contour.  
+        How many points are going go to be used to generate the KDE contour.
     share_x_axis_among_all_charts : bool
         If set to True, the same x-axis limits are used for ALL models, otherwise each model has its own x-axis limits
     title_string : string
@@ -1249,7 +1249,7 @@ def compute_and_display_the_KDE_from_a_dataframe(pd_x,
     linewidth : int
         Line width for the KDE plot
     fontsize : int
-        Font size of the figure. 
+        Font size of the figure.
     list_with_spacing_options : list
         List with floating-point values to control the spacing within the figure using matplotlib convention [top, bottom, left, right, hspace, wspace].
     figsize : tuple
@@ -1262,7 +1262,7 @@ def compute_and_display_the_KDE_from_a_dataframe(pd_x,
         String of the filename to use for saving the figure. For instance: 'figure_with_probability_density_functions_of_performance_metrics_after_autotuning'
     extension : string
         Image extension. For instance '.pdf' or '.png'
-    
+
     Returns
     -------
     None
@@ -1271,33 +1271,31 @@ def compute_and_display_the_KDE_from_a_dataframe(pd_x,
     -------- 
     .. code-block:: Python
     
-    N=100
-    var1 = list(1*np.random.randn(N) + 1)
-    var2 = list(5*np.random.randn(N) -1 )
-    list_of_tuples = list(zip(var1, var2)) # get the list of tuples from two lists and merge them by using zip().  
-    columns = ['var1','var2']
-    pd_x=pd.DataFrame(data=list_of_tuples,columns=columns)
-    name_of_x    = 'Error of measurement'
-    title_string = 'Experiment 1'
-    flag_show_plot_in_different_rows = False 
-    compute_and_display_the_KDE_from_a_dataframe(pd_x                                = pd_x,
-                                                 name_of_x                           = name_of_x,
-                                                 bandwidth_to_use                    = 'std', # #'Scott' #'Binwidth' #, 'Silverman'.
-                                                 kernel                              = 'gaussian',
-                                                 num_points_to_generate_in_kde_graph = 400,  
-                                                 share_x_axis_among_all_charts       = True,
-                                                 title_string                        = title_string,
-                                                 flag_show_plot_in_different_rows    = flag_show_plot_in_different_rows, 
-                                                 linewidth                           = 2,
-                                                 fontsize                            = 12,
-                                                 list_with_spacing_options           = [0.90, 0.10, 0.10, 0.90, 0.2, 0.2], 
-                                                 figsize                             = (10, 5),
-                                                 flag_save_figure                    = True,
-                                                 output_path                         = '/home/alejandro/',
-                                                 filename_without_extension          = 'figure_with_probability_density_functions',
-                                                 extension                           = '.pdf')
-
-
+        N=100
+        var1 = list(1*np.random.randn(N) + 1)
+        var2 = list(5*np.random.randn(N) -1 )
+        list_of_tuples = list(zip(var1, var2)) # get the list of tuples from two lists and merge them by using zip().  
+        columns = ['var1','var2']
+        pd_x=pd.DataFrame(data=list_of_tuples,columns=columns)
+        name_of_x    = 'Error of measurement'
+        title_string = 'Experiment 1'
+        flag_show_plot_in_different_rows = False 
+        compute_and_display_the_KDE_from_a_dataframe(pd_x                                = pd_x,
+                                                     name_of_x                           = name_of_x,
+                                                     bandwidth_to_use                    = 'std', # #'Scott' #'Binwidth' #, 'Silverman'.
+                                                     kernel                              = 'gaussian',
+                                                     num_points_to_generate_in_kde_graph = 400,  
+                                                     share_x_axis_among_all_charts       = True,
+                                                     title_string                        = title_string,
+                                                     flag_show_plot_in_different_rows    = flag_show_plot_in_different_rows, 
+                                                     linewidth                           = 2,
+                                                     fontsize                            = 12,
+                                                     list_with_spacing_options           = [0.90, 0.10, 0.10, 0.90, 0.2, 0.2], 
+                                                     figsize                             = (10, 5),
+                                                     flag_save_figure                    = True,
+                                                     output_path                         = '/home/alejandro/',
+                                                     filename_without_extension          = 'figure_with_probability_density_functions',
+                                                     extension                           = '.pdf')
     """
     #print(pd_x.describe()) #Quick summary of data.
     #print(pd_x.shape)       #Rows and columns of the dataframe

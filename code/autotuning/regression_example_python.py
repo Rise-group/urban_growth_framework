@@ -1,11 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-"""
-Description:     This is a script that shows how to use the library machine_learning_library.py
-                 and apply it to the input data stored in a .csv file.
-Author:          Dr. Jairo Alejandro Gómez Escobar and Mr. Santiago Passos.
-Last updated on: 4th June 2019.
-"""
 #------------------------------------------------------------------------------------------------------
 #Libraries
 #------------------------------------------------------------------------------------------------------
@@ -16,31 +10,37 @@ import numpy as np
 import time
 from sklearn import preprocessing
 
-file_directory = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(file_directory)
 import autotuning
 #------------------------------------------------------------------------------------------------------
 #Main program
 #------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     # Create a random dataset with 4 variables and 100 observations. It is
-    # important that the dataframe has a variable for every label as the
-    # process choses the best features for the model and then an identifier
-    # for each variable is needed.
-    df_X = pd.DataFrame(np.random.rand(100,4))
+    # important that the dataframe has a label for every variable as the
+    # process selecets the best features for the model, an identifier is needed
+    # for each variable.
+    x_array = np.random.rand(100,4)
+    
+    # We generate random coefficients that will be used to generate the output
+    coeffs = np.random.rand(1,4)
+    # Generate the output and add some noise
+    noise = np.random.rand(100,1) * 0.45
+    y_array = np.sum(x_array*coeffs, axis=1).reshape(-1,1) + noise
+
+    df_X = pd.DataFrame(x_array)
     df_X.columns = ['var0', 'var1', 'var2', 'var3']
 
-    df_y= pd.DataFrame(np.random.rand(100,1))
+    df_y= pd.DataFrame(y_array)
     df_y.columns = ['output']
 
     # You have to past the path and filename to the json file
-    path_and_filename_to_json_file = 'parameters_example_regression.json'
+    path_and_filename_to_json_file = 'regression_example_parameters.json'
     tic = time.time()
     outputs_after_all_iterations = autotuning.get_best_models(
             df_X,
             df_y,
             random_state                    = 42,
-            number_of_iterations            = 10,
+            number_of_iterations            = 20,
             compute_higher_order_features   = False,
             use_interaction_features_only   = True,
             degree_of_polynomial            = 2,      
@@ -67,10 +67,10 @@ if __name__ == '__main__':
     best_pipeline  = autotuning.extract_best_pipeline_from_the_best_models(best_pipelines)
     
     for pipeline in best_pipelines:
-        # Each of this pipeline is a prediction class object, so we can access
-        # to its attributes
+        # Each of this pipeline is a prediction class object, so that we can access
+        # its attributes
         print()
-        print(pipeline.pipeline_name)
+        print("Pipeline name : {}".format(pipeline.pipeline_name))
         print("The {} value for this model was: {}.".format(pipeline.performance_metric_name,
               pipeline.performance_metric_value))
         print()
@@ -83,8 +83,8 @@ if __name__ == '__main__':
         print("--------------------------------------------------------------")
     
     autotuning.show_performance_metrics(outputs_after_all_iterations,
-                                        name_of_x = 'R2',
-                                        title_string = 'Autotuning example with regression',
-                                        share_x_axis_among_all_charts = False,
-                                        flag_show_plot_in_different_rows = True,
-                                        flag_save_figure = False)
+                                    name_of_x = 'R2',
+                                    title_string = 'Autotuning example with regression',
+                                    share_x_axis_among_all_charts = True,
+                                    flag_show_plot_in_different_rows = True,
+                                    flag_save_figure = False)

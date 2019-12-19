@@ -16,32 +16,42 @@ import numpy as np
 import time
 from sklearn import preprocessing
 
-file_directory = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(file_directory)
 import autotuning
 #------------------------------------------------------------------------------------------------------
 #Main program
 #------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     # Create a random dataset with 4 variables and 100 observations. It is
-    # important that the dataframe has a variable for every label as the
-    # process choses the best features for the model and then an identifier
-    # for each variable is needed.
-    df_X = pd.DataFrame(np.random.rand(100,4))
+    # important that the dataframe has a label for every variable as the
+    # process selecets the best features for the model, an identifier is needed
+    # for each variable.
+    x_array = np.random.rand(300,4)
+
+    df_X = pd.DataFrame(x_array)
     df_X.columns = ['var0', 'var1', 'var2', 'var3']
+    
+    # We generate random coefficients that will be used to generate the output
+    coeffs = np.random.rand(1,4)
+    # Generate the output and add some noise
+    noise = np.random.rand(300,1) * 2
+    y_array = np.sum(x_array*coeffs, axis=1).reshape(-1,1) + noise
 
-    # The dataset will have 3 classes
-    df_y = pd.DataFrame(np.random.randint(0,3,(100,1)))
+    # Create 3 different classes according to the value they have
+    class_1 = (y_array > 0.8*2)*1
+
+    # Create the output array divided in classes
+    y_array = class_1
+
+    df_y= pd.DataFrame(y_array)
     df_y.columns = ['output']
-
     # You have to past the path and filename to the json file
-    path_and_filename_to_json_file = 'parameters_example_classification.json'
+    path_and_filename_to_json_file = 'classification_example_parameters.json'
     tic = time.time()
     outputs_after_all_iterations = autotuning.get_best_models(
             df_X,
             df_y,
             random_state                    = 42,
-            number_of_iterations            = 5,
+            number_of_iterations            = 15,
             compute_higher_order_features   = False,
             use_interaction_features_only   = True,
             degree_of_polynomial            = 2,      
@@ -68,10 +78,10 @@ if __name__ == '__main__':
     best_pipeline  = autotuning.extract_best_pipeline_from_the_best_models(best_pipelines)
     
     for pipeline in best_pipelines:
-        # Each of this pipeline is a prediction class object, so we can access
-        # to its attributes
+        # Each of this pipeline is a prediction class object, so that we can access
+        # its attributes
         print()
-        print(pipeline.pipeline_name)
+        print("Pipeline name : {}".format(pipeline.pipeline_name))
         print("The {} value for this model was: {}.".format(pipeline.performance_metric_name,
               pipeline.performance_metric_value))
         print()
@@ -81,7 +91,7 @@ if __name__ == '__main__':
         print("Optimal features:")
         print(pipeline.names_of_optimal_features)
         print()
-        # As this is a classification task, we can have the confusion matrix
+        # As this is a classification task, we can print the confusion matrix
         # and the classification report
         print("Confusion Matrix")
         print()

@@ -1,0 +1,112 @@
+{
+	
+	"type" : "regression",
+	"comment" : "In the 'name' section use the same name as scikit-learn",
+	"comment" : "Use the same parameters name as scikit-learn",
+	"models" : [
+		{
+			"comment" : " http://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html",
+			"comment" : "Boolean parameters must be passed as Strings",
+			"name" : "LinearRegression",
+			"parameters" : [
+				{
+					"fit_intercept" : ["True"]
+				}
+			]
+		},
+		{
+			"comment" : "http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html",
+			"comment" : "Boolean parameters must be passed as Strings",
+			"name" : "Ridge",
+			"parameters" : [
+				{
+					"fit_intercept" : ["True"],
+					"alpha" : [0.75,0.8,0.85,0.9]
+				}
+			]
+		},
+		{
+			"comment" : "http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html",
+			"comment" : "Boolean parameters must be passed as Strings",
+			"name" : "Lasso",
+			"parameters" : [
+				{
+					"fit_intercept" : ["True"],
+					"alpha": [0.03,0.06,0.09],
+                    "tol":   [0.02,0.04,0.06,0.08],
+                    "max_iter": [10000] 
+				}
+			]
+		},
+		{
+			"comment" : "http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.BayesianRidge.html#sklearn.linear_model.BayesianRidge",
+			"comment" : "Boolean parameters must be passed as Strings",
+			"name" : "BayesianRidge",
+			"parameters" : [
+				{
+					"fit_intercept" : ["True"]
+				}
+			]
+		},
+		{
+			"comment" : "http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html#sklearn.tree.DecisionTreeRegressor",
+			"name" : "DecisionTreeRegressor",
+			"parameters" : [
+				{
+					"max_depth" : [2, 3],
+                    "min_samples_split" : [2, 3]
+				}
+			]
+		},
+		{
+			"comment" : "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html#sklearn.ensemble.RandomForestRegressor",
+			"name" : "RandomForestRegressor",
+			"parameters" : [
+				{
+					"n_estimators" : [100],
+					"max_depth" : [2, 3],
+                    "min_samples_split" : [2, 3]
+				}
+			]
+		},
+		{
+			"comment" : "http://scikit-learn.org/stable/modules/svm.html#regression",
+			"name" : "SVR",
+			"parameters" : [
+				{
+					"C": [1e-2,1e-1,1, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6], 
+                    "kernel": ["linear"]
+                },
+                {
+                	"C": [1e-2,1e-1,1, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6], 
+                 	"gamma" : [1e-4, 1e-3, 1e-2, 1e-1], 
+                    "kernel": ["rbf"]
+                }
+			]
+		},
+		{
+			"comment" : "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html",
+			"name" : "GradientBoostingRegressor",
+			"parameters" : [
+				{
+					"n_estimators": [100, 200],
+                    "max_depth": [3, 4],
+                    "min_samples_split": [2, 3, 4],
+                    "learning_rate": [1e-7, 1e-6, 1e-3, 1e-1],
+                    "loss": ["ls", "lad", "huber", "quantile"]
+				}
+			]
+		},
+		{
+			"comment" : "http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPRegressor.html#sklearn.neural_network.MLPRegressor",
+			"name" : "MLPRegressor",
+			"parameters" : [
+				{
+					"hidden_layer_sizes": ["(50,)", "(100,)", "(200,)"],
+                    "learning_rate_init": [1e-9, 1e-6, 1e-3],
+                    "max_iter": [500, 1000, 2000]
+				}
+			]
+		},
+	]
+}
